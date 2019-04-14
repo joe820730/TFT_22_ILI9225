@@ -1199,6 +1199,42 @@ uint16_t** bitmap, int16_t w, int16_t h) {
     endWrite();
 }
 
+//1-D array High speed color bitmap
+void TFT_22_ILI9225::drawBitmap(uint16_t x1, uint16_t y1, 
+const uint16_t* bitmap, int16_t w, int16_t h) {
+    _setWindow(x1, y1, x1+w, y1+h);
+    startWrite();
+    SPI_DC_HIGH();
+    SPI_CS_LOW();
+    for (uint16_t j = 0; j < h; j++) {
+        for (uint16_t i = 0; i < w; i++) {
+            uint16_t col = bitmap[j*h+i];
+            _spiWrite(col>>8);
+            _spiWrite(col);
+        }
+    }
+    SPI_CS_HIGH();
+    endWrite();
+}
+
+//1-D array High speed color bitmap
+void TFT_22_ILI9225::drawBitmap(uint16_t x1, uint16_t y1, 
+uint16_t* bitmap, int16_t w, int16_t h) {
+    _setWindow(x1, y1, x1+w, y1+h);
+    startWrite();
+    SPI_DC_HIGH();
+    SPI_CS_LOW();
+    for (uint16_t j = 0; j < h; j++) {
+        for (uint16_t i = 0; i < w; i++) {
+            uint16_t col = bitmap[j*h+i];
+            _spiWrite(col>>8);
+            _spiWrite(col);
+        }
+    }
+    SPI_CS_HIGH();
+    endWrite();
+}
+
 void TFT_22_ILI9225::startWrite(void){
     if (writeFunctionLevel++ == 0) {
         SPI_BEGIN_TRANSACTION();
