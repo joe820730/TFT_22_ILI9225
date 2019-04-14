@@ -1166,7 +1166,7 @@ const uint8_t *bitmap, int16_t w, int16_t h, uint16_t color, uint16_t bg, bool t
 //High speed color bitmap
 void TFT_22_ILI9225::drawBitmap(uint16_t x1, uint16_t y1, 
 const uint16_t** bitmap, int16_t w, int16_t h) {
-    _setWindow(x1, y1, x1+w, y1+h);
+    _setWindow(x1, y1, x1+w-1, y1+h-1,L2R_TopDown);
     startWrite();
     SPI_DC_HIGH();
     SPI_CS_LOW();
@@ -1184,7 +1184,7 @@ const uint16_t** bitmap, int16_t w, int16_t h) {
 //High speed color bitmap
 void TFT_22_ILI9225::drawBitmap(uint16_t x1, uint16_t y1, 
 uint16_t** bitmap, int16_t w, int16_t h) {
-    _setWindow(x1, y1, x1+w, y1+h);
+    _setWindow(x1, y1, x1+w-1, y1+h-1,L2R_TopDown);
     startWrite();
     SPI_DC_HIGH();
     SPI_CS_LOW();
@@ -1202,7 +1202,7 @@ uint16_t** bitmap, int16_t w, int16_t h) {
 //1-D array High speed color bitmap
 void TFT_22_ILI9225::drawBitmap(uint16_t x1, uint16_t y1, 
 const uint16_t* bitmap, int16_t w, int16_t h) {
-    _setWindow(x1, y1, x1+w, y1+h);
+    _setWindow(x1, y1, x1+w-1, y1+h-1,L2R_TopDown);
     startWrite();
     SPI_DC_HIGH();
     SPI_CS_LOW();
@@ -1220,7 +1220,7 @@ const uint16_t* bitmap, int16_t w, int16_t h) {
 //1-D array High speed color bitmap
 void TFT_22_ILI9225::drawBitmap(uint16_t x1, uint16_t y1, 
 uint16_t* bitmap, int16_t w, int16_t h) {
-    _setWindow(x1, y1, x1+w, y1+h);
+    _setWindow(x1, y1, x1+w-1, y1+h-1,L2R_TopDown);
     startWrite();
     SPI_DC_HIGH();
     SPI_CS_LOW();
